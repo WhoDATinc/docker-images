@@ -21,16 +21,6 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86
   echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
   echo "conda activate base" >> ~/.bashrc
 
-# add extra ML libraries 
-RUN conda update conda
-RUN apt-get update
-RUN apt update
-RUN apt remove cmake -y
-RUN conda install cmake -y
-RUN apt-get install libsm6 libxrender1 libfontconfig1 -y
-RUN conda install Cython protobuf matplotlib future graphviz hypothesis pydot pyyaml mock scipy pytorch-nightly -c pytorch -y
-RUN pip install opencv-python
-
 ENV TINI_VERSION v0.16.1
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
